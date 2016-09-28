@@ -41,10 +41,13 @@ Let's get started.
       Clone the repo
     """
     git clone git@github.com:yunstanford/MyGraphite.git
+
+
     """
       Set up uranium
     """
     ./uranium
+
 
     """
       Set up all graphite components in one command line
