@@ -71,6 +71,12 @@ Yeah, we are good to use Graphite now.
 	"""
 	python ./bin/run-graphite-devel-server.py .
 
-	Then, go to http://0.0.0.0:8080
+	Then, go to http://0.0.0.0:8080.
+
+	Note, if you have any user access operation issue due to backend database, check out your webapp
+	database configuration. You should also create a user and grant all privileges on a database.
+
+	For more details, refer
+	- https://github.com/yunstanford/GraphiteSetup
 
 
