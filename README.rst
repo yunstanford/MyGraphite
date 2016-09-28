@@ -10,7 +10,10 @@ With MyGraphite, you can easily set up Graphite on your local machine.
 OS level dependency
 -------------------
 
+Utilize homebrew.
+
 .. code::
+
     """
       for broken image issue
     """
@@ -29,7 +32,11 @@ For more details, please refer
 -----------
 Quick Start
 -----------
+
+Let's get started.
+
 .. code::
+
     """
       Clone the repo
     """
@@ -47,6 +54,7 @@ Quick Start
 Yeah, we are good to use Graphite now.
 
 .. code::
+
     """
       activate virtual env
     """
@@ -71,6 +79,7 @@ Yeah, we are good to use Graphite now.
       Start webapp
     """
     python ./bin/run-graphite-devel-server.py .
+
 
 Then, go to http://0.0.0.0:8080.
 
