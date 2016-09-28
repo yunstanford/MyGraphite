@@ -80,3 +80,10 @@ Yeah, we are good to use Graphite now.
 	- https://github.com/yunstanford/GraphiteSetup
 
 
+-------------
+Configuration
+-------------
+
+You can put all your configuration file in conf_default folder. when you run ./uranium build, it will
+automatically move your configuration file to proper directory.
+
