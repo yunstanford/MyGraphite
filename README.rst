@@ -59,21 +59,29 @@ Yeah, we are good to use Graphite now.
       activate virtual env
     """
     source ./bin/activate
+
+
     """
       Start a single carbon-relay
     """
     python ./bin/carbon-relay.py --instance=a start
+
+
     """
       Start a single carbon-cache
     """
     python ./bin/carbon-cache.py --instance=a start
+
+
     """
       Start a bunch of carbon-cache and carbon-relay instances once.
     """
     # start all daemons
     ./bin/run
+
     # shutdown all daemons
     ./bin/shutdown
+
 
     """
       Start webapp
