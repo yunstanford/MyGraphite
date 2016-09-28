@@ -30,54 +30,55 @@ For more details, please refer
 Quick Start
 -----------
 .. code::
-	"""
-	  Clone the repo
-	"""
-	git clone git@github.com:yunstanford/MyGraphite.git
-	"""
-	  Set up uranium
-	"""
-	./uranium
+"""
+  Clone the repo
+"""
+git clone git@github.com:yunstanford/MyGraphite.git
+"""
+  Set up uranium
+"""
+./uranium
 
-	"""
-	  Set up all graphite components in one command line
-	"""
-	./uranium build
+"""
+  Set up all graphite components in one command line
+"""
+./uranium build
 
 Yeah, we are good to use Graphite now.
 
 .. code::
-	"""
-	  activate virtual env
-	"""
-	source ./bin/activate
-	"""
-	  Start a single carbon-relay
-	"""
-	python ./bin/carbon-relay.py --instance=a start
-	"""
-	  Start a single carbon-cache
-	"""
-	python ./bin/carbon-cache.py --instance=a start
-	"""
-	  Start a bunch of carbon-cache and carbon-relay instances once.
-	"""
-	# start all daemons
-	./bin/run
-	# shutdown all daemons
-	./bin/shutdown
-	"""
-	  Start webapp
-	"""
-	python ./bin/run-graphite-devel-server.py .
+"""
+  activate virtual env
+"""
+source ./bin/activate
+"""
+  Start a single carbon-relay
+"""
+python ./bin/carbon-relay.py --instance=a start
+"""
+  Start a single carbon-cache
+"""
+python ./bin/carbon-cache.py --instance=a start
+"""
+  Start a bunch of carbon-cache and carbon-relay instances once.
+"""
+# start all daemons
+./bin/run
+# shutdown all daemons
+./bin/shutdown
 
-	Then, go to http://0.0.0.0:8080.
+"""
+  Start webapp
+"""
+python ./bin/run-graphite-devel-server.py .
 
-	Note, if you have any user access operation issue due to backend database, check out your webapp
-	database configuration. You should also create a user and grant all privileges on a database.
+Then, go to http://0.0.0.0:8080.
 
-	For more details, refer
-	- https://github.com/yunstanford/GraphiteSetup
+Note, if you have any user access operation issue due to backend database, check out your webapp
+database configuration. You should also create a user and grant all privileges on a database.
+
+For more details, refer
+- https://github.com/yunstanford/GraphiteSetup
 
 
 -------------
