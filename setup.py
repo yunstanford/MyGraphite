@@ -10,12 +10,12 @@ install_requires = []
 
 tests_require = []
 
-setup(name='graphite_package',
+setup(name='MyGraphite',
       version='0.0.1',
       description='',
       long_description=open(README_PATH).read(),
-      author='Test',
-      author_email='test',
+      author='Yun Xu',
+      author_email='yunxu1992@gmail.com',
       url='',
       packages=find_packages(),
       install_requires=install_requires,
