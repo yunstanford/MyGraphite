@@ -40,13 +40,12 @@ def build(build):
     _download_scripts(build)
 
 
-@task_requires("build")
 def syncdb(build):
     _print("=== Set up webapp backend ===")
-    build.executables.run([
-        "mysql", "-u", "root",
-        "-t", "<", "{0}/bin/mysql_script.sql".format(ROOT)
-    ])
+    p = subprocess.Popen(
+        "mysql -u root -t < {0}/bin/mysql_script.sql".format(ROOT), shell=True
+    )
+    os.waitpid(p.pid, 0)
     build.executables.run([
         "python", "{0}/webapp/graphite/manage.py".format(ROOT),
         "syncdb"
