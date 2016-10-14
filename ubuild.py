@@ -58,7 +58,7 @@ def syncdb(build):
 def webapp(build):
     build.executables.run([
         "gunicorn", "graphite_wsgi:application",
-        "-c", "{0}/conf/gunicorn_prod.py"
+        "-c", "{0}/conf/gunicorn_prod.py".format(ROOT)
     ])
 
 
