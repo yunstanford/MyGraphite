@@ -42,14 +42,21 @@ def build(build):
 
 def syncdb(build):
     _print("=== Set up webapp backend ===")
-    p = subprocess.Popen(
-        "mysql -u root -t < {0}/bin/mysql_script.sql".format(ROOT), shell=True
-    )
-    os.waitpid(p.pid, 0)
+    _print("Creating user and database...")
+    cmd = ""
+    with open('{0}/bin/mysql_script.sql'.format(ROOT), 'r') as mysql:
+        cmd = mysql.read().replace('\n', '')
+    build.executables.run([
+        "mysql", "-u", "root",
+        "-t", "-e", cmd
+    ])
+    _print("Successfully created user and database!")
+    _print("Creating tables...")
     build.executables.run([
         "python", "{0}/webapp/graphite/manage.py".format(ROOT),
         "syncdb"
     ])
+    _print("Successfully created tables!")
     _print("=== Done! ===")
 
 
