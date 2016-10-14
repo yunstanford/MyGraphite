@@ -99,10 +99,15 @@ Yeah, we are good to use Graphite now.
 
 
     """
-      Start webapp
+      Start webapp under Gunicorn
     """
     ./uranium webapp
 
+
+    """
+      Dev Mode: run Graphite under django development server
+    """
+    ./uranium dev
 
 Then, go to http://0.0.0.0:8080.
 
