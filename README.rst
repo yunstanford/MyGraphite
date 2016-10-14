@@ -87,6 +87,18 @@ Yeah, we are good to use Graphite now.
 
 
     """
+      Start mysql server
+    """
+    mysqld_safe
+
+
+    """
+      Set up webapp backend database
+    """
+    ./uranium syncdb
+    
+
+    """
       Start webapp
     """
     python ./bin/run-graphite-devel-server.py .
