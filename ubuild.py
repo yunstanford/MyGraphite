@@ -31,12 +31,7 @@ def build(build):
         "--install-option", "--prefix={0}".format(ROOT),
         "--install-option", "--install-lib={0}/webapp".format(ROOT)
     ])
-    build.executables.run([
-        "cp", "-R", "conf_default/config/", "conf/"
-    ])
-    build.executables.run([
-        "cp", "conf_default/local_settings.py", "webapp/graphite/"
-    ])
+    _config()
     _download_scripts(build)
 
 
@@ -61,6 +56,12 @@ def syncdb(build):
 
 
 def webapp(build):
+    build.executables.run([
+        "gunicorn", "graphite_wsgi:application"
+    ])
+
+
+def dev(build):
     build.executables.run([
         "python", "{0}/bin/run-graphite-devel-server.py".format(ROOT), ROOT
     ])
@@ -96,6 +97,25 @@ def _install_dependencies(build):
     build.packages.install("pyparsing", version="==1.5.7")
     build.packages.install("MySQL-python")
     build.packages.install("cairocffi")
+
+
+def _config(build):
+    build.executables.run([
+        "cp", "-R", "{0}/conf_default/config/".format(ROOT),
+        "{0}/conf/".format(ROOT)
+    ])
+    build.executables.run([
+        "cp", "{0}/conf_default/local_settings.py".format(ROOT),
+        "{0}/webapp/graphite/".format(ROOT)
+    ])
+    build.executables.run([
+        "cp", "{0}/conf_default/graphite_wsgi.py".format(ROOT),
+        ROOT
+    ])
+    build.executables.run([
+        "cp", "{0}/conf_default/gunicorn_prod.py".format(ROOT),
+        "{0}/conf/".format(ROOT)
+    ])
 
 
 def _download_scripts(build):

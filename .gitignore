@@ -24,3 +24,4 @@ conf/
 examples/
 webapp/
 storage/
+graphite_wsgi.py
