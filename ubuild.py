@@ -101,22 +101,32 @@ def _install_dependencies(build):
 
 
 def _config(build):
+    _print("=== Configuring... ===")
+    _print("Configuring Carbon...")
     build.executables.run([
         "cp", "-R", "{0}/conf_default/config/".format(ROOT),
         "{0}/conf/".format(ROOT)
     ])
+    _print("Successfully done!")
+    _print("Configuring Webapp...")
     build.executables.run([
         "cp", "{0}/conf_default/local_settings.py".format(ROOT),
         "{0}/webapp/graphite/".format(ROOT)
     ])
+    _print("Successfully done!")
+    _print("Configuring general graphite settings...")
     build.executables.run([
         "cp", "{0}/conf_default/graphite.wsgi".format(ROOT),
         "{0}/graphite_wsgi.py".format(ROOT)
     ])
+    _print("Successfully done!")
+    _print("Configuring gunicorn...")
     build.executables.run([
         "cp", "{0}/conf_default/gunicorn_prod.py".format(ROOT),
         "{0}/conf/".format(ROOT)
     ])
+    _print("Successfully done!")
+    _print("=== Done! ===")
 
 
 def _download_scripts(build):
