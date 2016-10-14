@@ -110,8 +110,8 @@ def _config(build):
         "{0}/webapp/graphite/".format(ROOT)
     ])
     build.executables.run([
-        "cp", "{0}/conf_default/graphite_wsgi.py".format(ROOT),
-        ROOT
+        "cp", "{0}/conf_default/graphite.wsgi".format(ROOT),
+        "{0}/graphite_wsgi.py".format(ROOT)
     ])
     build.executables.run([
         "cp", "{0}/conf_default/gunicorn_prod.py".format(ROOT),
