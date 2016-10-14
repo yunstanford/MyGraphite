@@ -34,9 +34,9 @@ CARBONLINK_QUERY_BULK = True
 # specification as the old database specification style is removed in 1.4
 DATABASES = {
     'default': {
-        'NAME': 'graphite',
+        'NAME': 'graphite_backend',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'mygraphite',
+        'USER': 'my_graphite',
         'PASSWORD': 'hello_world',
         'HOST': '127.0.0.1',
         'PORT': '3306'
