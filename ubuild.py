@@ -31,7 +31,7 @@ def build(build):
         "--install-option", "--prefix={0}".format(ROOT),
         "--install-option", "--install-lib={0}/webapp".format(ROOT)
     ])
-    _config()
+    _config(build)
     _download_scripts(build)
 
 
