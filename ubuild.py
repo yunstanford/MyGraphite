@@ -53,6 +53,12 @@ def syncdb(build):
     _print("=== Done! ===")
 
 
+def webapp(build):
+    build.executables.run([
+        "python", "{0}/bin/run-graphite-devel-server.py".format(ROOT), ROOT
+    ])
+
+
 def distribute(build):
     """ distribute the uranium package """
     build.packages.install("wheel")

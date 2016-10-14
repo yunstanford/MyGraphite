@@ -96,12 +96,12 @@ Yeah, we are good to use Graphite now.
       Set up webapp backend database
     """
     ./uranium syncdb
-    
+
 
     """
       Start webapp
     """
-    python ./bin/run-graphite-devel-server.py .
+    ./uranium webapp
 
 
 Then, go to http://0.0.0.0:8080.
