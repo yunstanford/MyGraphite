@@ -8,7 +8,8 @@ SCRIPT_URLS = [
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/carbon_cache.py",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/carbon_relay.py",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/run",
-    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/shutdown"
+    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/shutdown",
+    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/mysql_script.sql"
 ]
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
@@ -37,6 +38,20 @@ def build(build):
         "cp", "conf_default/local_settings.py", "webapp/graphite/"
     ])
     _download_scripts(build)
+
+
+@task_requires("build")
+def syncdb(build):
+    _print("=== Set up webapp backend ===")
+    build.executables.run([
+        "mysql", "-u", "root",
+        "-t", "<", "{0}/bin/mysql_script.sql".format(ROOT)
+    ])
+    build.executables.run([
+        "python", "{0}/webapp/graphite/manage.py".format(ROOT),
+        "syncdb"
+    ])
+    _print("=== Done! ===")
 
 
 def distribute(build):
