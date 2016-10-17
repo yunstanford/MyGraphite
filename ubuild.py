@@ -98,6 +98,7 @@ def _install_dependencies(build):
     build.packages.install("pyparsing", version="==1.5.7")
     build.packages.install("MySQL-python")
     build.packages.install("cairocffi")
+    build.packages.install("whitenoise")
 
 
 def _config(build):
