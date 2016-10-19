@@ -100,6 +100,12 @@ Yeah, we are good to use Graphite now.
 
 
     """
+      Create initial schema, migration.
+    """
+    PYTHONPATH=$GRAPHITE_ROOT/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb
+
+
+    """
       Start webapp under Gunicorn
     """
     ./uranium webapp
