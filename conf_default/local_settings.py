@@ -48,7 +48,7 @@ MAX_FETCH_RETRIES = 2
 
 
 # Set URL_PREFIX when deploying graphite-web to a non-root location
-URL_PREFIX = '/graphite'
+# URL_PREFIX = '/graphite'
 
 
 
