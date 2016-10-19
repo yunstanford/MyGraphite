@@ -93,9 +93,10 @@ Yeah, we are good to use Graphite now.
 
 
     """
-      Set up webapp backend database
+      Set up webapp backend database. This helps you create user, password
+      and database
     """
-    ./uranium syncdb
+    ./uranium db
 
 
     """
