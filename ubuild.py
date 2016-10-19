@@ -22,12 +22,12 @@ def main(build):
 def build(build):
     _install_dependencies(build)
     build.executables.run([
-        "pip", "install", "carbon",
+        "pip", "install", "https://github.com/graphite-project/carbon/tarball/master",
         "--install-option", "--prefix={0}".format(ROOT),
         "--install-option", "--install-lib={0}/lib".format(ROOT)
     ])
     build.executables.run([
-        "pip", "install", "graphite-web",
+        "pip", "install", "https://github.com/graphite-project/graphite-web/tarball/master",
         "--install-option", "--prefix={0}".format(ROOT),
         "--install-option", "--install-lib={0}/webapp".format(ROOT)
     ])
@@ -87,8 +87,8 @@ def build_docs(build):
 def _install_dependencies(build):
     build.packages.install("whisper")
     build.packages.install("zope.interface")
-    build.packages.install("Django", version="==1.5")
-    build.packages.install("django-tagging", version="==0.3.6")
+    build.packages.install("Django", version="==1.9")
+    build.packages.install("django-tagging", version="==0.4.3")
     build.packages.install("python-memcached")
     build.packages.install("txAMQP", version="==0.4")
     build.packages.install("simplejson", version="==2.1.6")
