@@ -35,7 +35,7 @@ def build(build):
     _download_scripts(build)
 
 
-def syncdb(build):
+def db(build):
     _print("=== Set up webapp backend ===")
     _print("Creating user and database...")
     cmd = ""
@@ -46,16 +46,6 @@ def syncdb(build):
         "-t", "-e", cmd
     ])
     _print("Successfully created user and database!")
-    _print("Creating tables...")
-    # build.executables.run([
-    #     "python", "{0}/webapp/graphite/manage.py".format(ROOT),
-    #     "syncdb"
-    # ])
-    # PYTHONPATH=~/Documents/PROJECTS/MyGraphite/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb
-    # build.executables.run([
-    #     "sh", "{0}/bin/syncdb".format(ROOT)
-    # ])
-    _print("Successfully created tables!")
     _print("=== Done! ===")
 
 
