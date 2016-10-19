@@ -47,10 +47,14 @@ def syncdb(build):
     ])
     _print("Successfully created user and database!")
     _print("Creating tables...")
-    build.executables.run([
-        "python", "{0}/webapp/graphite/manage.py".format(ROOT),
-        "syncdb"
-    ])
+    # build.executables.run([
+    #     "python", "{0}/webapp/graphite/manage.py".format(ROOT),
+    #     "syncdb"
+    # ])
+    # PYTHONPATH=~/Documents/PROJECTS/MyGraphite/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb
+    # build.executables.run([
+    #     "sh", "{0}/bin/syncdb".format(ROOT)
+    # ])
     _print("Successfully created tables!")
     _print("=== Done! ===")
 
@@ -98,6 +102,7 @@ def _install_dependencies(build):
     build.packages.install("pyparsing", version="==1.5.7")
     build.packages.install("MySQL-python")
     build.packages.install("cairocffi")
+    build.packages.install("whitenoise")
 
 
 def _config(build):
