@@ -7,9 +7,10 @@ from uranium import task_requires
 SCRIPT_URLS = [
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/carbon_cache.py",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/carbon_relay.py",
-    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/run",
+    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/feature/MON-128004/run",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/shutdown",
-    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/mysql_script.sql"
+    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/mysql_script.sql",
+    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/feature/MON-128004/setup_carbon_relay_ng.sh"
 ]
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
