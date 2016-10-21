@@ -2,6 +2,7 @@ import os
 import subprocess
 import datetime
 from uranium import task_requires
+import yaml
 
 
 SCRIPT_URLS = [
@@ -13,8 +14,10 @@ SCRIPT_URLS = [
 ]
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
-GITHUB_ACCOUNT = "zillow"
-BRANCH = "feature/query_carbon_cache_for_new_metric_yun_dev"
+
+VERSION_CONFIG = _load_version()
+GITHUB_ACCOUNT = VERSION_CONFIG["github_account"]
+BRANCH = VERSION_CONFIG["branch"]
 
 
 def main(build):
@@ -171,3 +174,8 @@ def _now():
 
 def _print(msg):
     print("[{0}] {1}".format(_now(), msg))
+
+
+def _load_version():
+    version_path = os.path.join(ROOT, "conf_default", "version.yaml")
+    return yaml.load(file(version_path))
