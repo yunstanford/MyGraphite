@@ -2,7 +2,6 @@ import os
 import subprocess
 import datetime
 from uranium import task_requires
-import yaml
 
 
 SCRIPT_URLS = [
@@ -15,11 +14,6 @@ SCRIPT_URLS = [
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
 
-VERSION_CONFIG = _load_version()
-GITHUB_ACCOUNT = VERSION_CONFIG["github_account"]
-BRANCH = VERSION_CONFIG["branch"]
-
-
 def main(build):
     build.packages.install(".", develop=True)
 
@@ -27,6 +21,9 @@ def main(build):
 @task_requires("main")
 def build(build):
     _install_dependencies(build)
+    VERSION_CONFIG = _load_version()
+    GITHUB_ACCOUNT = VERSION_CONFIG["github_account"]
+    BRANCH = VERSION_CONFIG["branch"]
     build.executables.run([
         "pip", "install",
         "https://github.com/{0}/carbon/tarball/{1}".format(GITHUB_ACCOUNT, BRANCH),
@@ -177,5 +174,6 @@ def _print(msg):
 
 
 def _load_version():
+    import yaml
     version_path = os.path.join(ROOT, "conf_default", "version.yaml")
     return yaml.load(file(version_path))
