@@ -1,5 +1,8 @@
 MyGraphite
 ==========
+.. image:: https://travis-ci.org/yunstanford/MyGraphite.svg?branch=master
+    :alt: build status
+    :target: https://travis-ci.org/yunstanford/MyGraphite
 
 MyGraphite helps you packaging all Graphite components(Carbon-cache, Carbon-relay, Webapp, etc.) 
 and installing all python dependencies for you by utilizing uranium, an assembly tool for python.
