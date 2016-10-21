@@ -13,6 +13,9 @@ SCRIPT_URLS = [
 ]
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
+GITHUB_ACCOUNT = "zillow"
+BRANCH = "feature/query_carbon_cache_for_new_metric_yun_dev"
+
 
 def main(build):
     build.packages.install(".", develop=True)
@@ -22,20 +25,17 @@ def main(build):
 def build(build):
     _install_dependencies(build)
     build.executables.run([
-        "pip", "install", "https://github.com/graphite-project/carbon/tarball/master",
+        "pip", "install",
+        "https://github.com/{0}/carbon/tarball/{1}".format(GITHUB_ACCOUNT, BRANCH),
         "--install-option", "--prefix={0}".format(ROOT),
         "--install-option", "--install-lib={0}/lib".format(ROOT)
     ])
     build.executables.run([
-        "pip", "install", "https://github.com/graphite-project/graphite-web/tarball/master",
+        "pip", "install", "--no-deps",
+        "https://github.com/{0}/graphite-web/tarball/{1}".format(GITHUB_ACCOUNT, BRANCH),
         "--install-option", "--prefix={0}".format(ROOT),
         "--install-option", "--install-lib={0}/webapp".format(ROOT)
     ])
-    # build.executables.run([
-    #     "pip", "install", "git+https://github.com/graphite-project/graphite-web.git@master#egg=graphite-web",
-    #     "--install-option", "--prefix={0}".format(ROOT),
-    #     "--install-option", "--install-lib={0}/webapp".format(ROOT)
-    # ])
     _config(build)
     _download_scripts(build)
 
