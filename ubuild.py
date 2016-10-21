@@ -21,13 +21,18 @@ def main(build):
 @task_requires("main")
 def build(build):
     _install_dependencies(build)
+    VERSION_CONFIG = _load_version()
+    GITHUB_ACCOUNT = VERSION_CONFIG["github_account"]
+    BRANCH = VERSION_CONFIG["branch"]
     build.executables.run([
-        "pip", "install", "carbon",
+        "pip", "install",
+        "https://github.com/{0}/carbon/tarball/{1}".format(GITHUB_ACCOUNT, BRANCH),
         "--install-option", "--prefix={0}".format(ROOT),
         "--install-option", "--install-lib={0}/lib".format(ROOT)
     ])
     build.executables.run([
-        "pip", "install", "graphite-web",
+        "pip", "install", "--no-deps",
+        "https://github.com/{0}/graphite-web/tarball/{1}".format(GITHUB_ACCOUNT, BRANCH),
         "--install-option", "--prefix={0}".format(ROOT),
         "--install-option", "--install-lib={0}/webapp".format(ROOT)
     ])
@@ -35,7 +40,7 @@ def build(build):
     _download_scripts(build)
 
 
-def syncdb(build):
+def db(build):
     _print("=== Set up webapp backend ===")
     _print("Creating user and database...")
     cmd = ""
@@ -46,12 +51,6 @@ def syncdb(build):
         "-t", "-e", cmd
     ])
     _print("Successfully created user and database!")
-    _print("Creating tables...")
-    build.executables.run([
-        "python", "{0}/webapp/graphite/manage.py".format(ROOT),
-        "syncdb"
-    ])
-    _print("Successfully created tables!")
     _print("=== Done! ===")
 
 
@@ -87,8 +86,8 @@ def build_docs(build):
 def _install_dependencies(build):
     build.packages.install("whisper")
     build.packages.install("zope.interface")
-    build.packages.install("Django", version="==1.5")
-    build.packages.install("django-tagging", version="==0.3.6")
+    build.packages.install("Django", version="==1.9")
+    build.packages.install("django-tagging", version="==0.4.3")
     build.packages.install("python-memcached")
     build.packages.install("txAMQP", version="==0.4")
     build.packages.install("simplejson", version="==2.1.6")
@@ -98,6 +97,7 @@ def _install_dependencies(build):
     build.packages.install("pyparsing", version="==1.5.7")
     build.packages.install("MySQL-python")
     build.packages.install("cairocffi")
+    build.packages.install("whitenoise")
 
 
 def _config(build):
@@ -171,3 +171,9 @@ def _now():
 
 def _print(msg):
     print("[{0}] {1}".format(_now(), msg))
+
+
+def _load_version():
+    import yaml
+    version_path = os.path.join(ROOT, "conf_default", "version.yaml")
+    return yaml.load(file(version_path))

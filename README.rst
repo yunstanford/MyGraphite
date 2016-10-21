@@ -48,6 +48,10 @@ Let's get started.
     """
     ./uranium
 
+    """
+      Specify the version/branch for graphite-web and carbon.
+    """
+    vim ./conf_default/version.yaml
 
     """
       Set up all graphite components in one command line
@@ -93,9 +97,16 @@ Yeah, we are good to use Graphite now.
 
 
     """
-      Set up webapp backend database
+      Set up webapp backend database. This helps you create user, password
+      and database
     """
-    ./uranium syncdb
+    ./uranium db
+
+
+    """
+      Create initial schema, migration.
+    """
+    PYTHONPATH=$GRAPHITE_ROOT/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb
 
 
     """
