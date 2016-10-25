@@ -33,6 +33,7 @@ def build(build):
     ])
     _config(build)
     _download_scripts(build)
+    _setup_carbon_relay_ng(build)
 
 
 def syncdb(build):
@@ -147,6 +148,14 @@ def _download(build, url, destination):
     _print("caching script...")
     _store_cache(body, cache_path, filename)
     _chmod(build, cache_path, filename)
+    _print("=== Done! ===")
+
+
+def _setup_carbon_relay_ng(build):
+    _print("=== Compiling Carbon relay ng ===")
+    build.executables.run([
+        "sh", "{0}/bin/setup_carbon_relay_ng.sh".format(ROOT)
+    ])
     _print("=== Done! ===")
 
 
