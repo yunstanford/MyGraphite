@@ -6,8 +6,8 @@ from uranium import task_requires
 
 SCRIPT_URLS = [
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/carbon_cache.py",
-    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/run",
-    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/shutdown",
+    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/dev/run",
+    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/dev/shutdown",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/mysql_script.sql",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/setup_carbon_relay_ng.sh"
 ]
