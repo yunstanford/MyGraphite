@@ -6,6 +6,7 @@ from uranium import task_requires
 
 SCRIPT_URLS = [
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/carbon_cache.py",
+    "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/carbon_relay.py",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/dev/run",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/dev/shutdown",
     "https://raw.githubusercontent.com/yunstanford/GraphiteSetup/master/mysql_script.sql",
@@ -13,6 +14,16 @@ SCRIPT_URLS = [
 ]
 ROOT = os.path.dirname(os.path.realpath("__file__"))
 
+CONFIG_FILES = [
+    "carbon-relay-ng-1.ini",
+    "carbon-relay-ng-2.ini",
+    "carbon.conf",
+    "dashboard.conf",
+    "graphTemplates.conf",
+    "relay-rules.conf",
+    "storage-aggregation.conf",
+    "storage-schemas.conf"
+]
 
 def main(build):
     build.packages.install(".", develop=True)
@@ -38,7 +49,7 @@ def build(build):
     ])
     _config(build)
     _download_scripts(build)
-    _setup_carbon_relay_ng(build)
+    # _setup_carbon_relay_ng(build)
 
 
 def db(build):
@@ -83,6 +94,7 @@ def build_docs(build):
         ["make", "html"], cwd=os.path.join(build.root, "docs")
     )
 
+#####################################################################################
 
 def _install_dependencies(build):
     build.packages.install("whisper")
@@ -104,10 +116,11 @@ def _install_dependencies(build):
 def _config(build):
     _print("=== Configuring... ===")
     _print("Configuring Carbon...")
-    build.executables.run([
-        "cp", "-R", "{0}/conf_default/config/".format(ROOT),
-        "{0}/conf/".format(ROOT)
-    ])
+    for file in CONFIG_FILES:    
+        build.executables.run([
+            "cp", "-R", "{0}/conf_default/{1}".format(ROOT, file),
+            "{0}/conf/".format(ROOT)
+        ])
     _print("Successfully done!")
     _print("Configuring Webapp...")
     build.executables.run([
