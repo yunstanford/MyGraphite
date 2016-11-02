@@ -93,6 +93,23 @@ Yeah, we are good to use Graphite now.
     ./bin/shutdown
 
 
+However, if you are utilizing uranium to exec these tasks (start and shutdown daemons),
+you don't need to activate virtual env explictly. Run these command line directly.
+
+.. code::
+
+    """
+      start all daemons
+    """
+    ./uranium daemons
+
+
+    """
+      shutdown all daemons
+    """
+    ./uranium shutdown
+
+
     """
       Start mysql server
     """
