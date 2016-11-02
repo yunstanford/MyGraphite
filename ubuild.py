@@ -66,7 +66,24 @@ def db(build):
     _print("=== Done! ===")
 
 
+def daemons(build):
+    _print("=== Start daemons ===")
+    build.executables.run([
+        "{0}/bin/run".format(ROOT)
+    ])
+    _print("=== done ===")
+
+
+def shutdown(build):
+    _print("=== Shutdown daemons ===")
+    build.executables.run([
+        "{0}/bin/shutdown".format(ROOT)
+    ])
+    _print("=== done ===")
+
+
 def webapp(build):
+    _print("=== Start Graphite-web ===")
     build.executables.run([
         "gunicorn", "graphite_wsgi:application",
         "-c", "{0}/conf/gunicorn_prod.py".format(ROOT)
