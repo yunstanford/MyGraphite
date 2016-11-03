@@ -1,5 +1,5 @@
-MyGraphite
-==========
+MyGraphite in Docker
+====================
 .. image:: https://travis-ci.org/yunstanford/MyGraphite.svg?branch=master
     :alt: build status
     :target: https://travis-ci.org/yunstanford/MyGraphite
@@ -39,106 +39,15 @@ Quick Start
 Let's get started.
 
 .. code::
+    """
+      Docker 
+    """
+    docker-compose up
 
     """
-      Clone the repo
+      wanna rebuild ?
     """
-    git clone git@github.com:yunstanford/MyGraphite.git
-
-
-    """
-      Set up uranium
-    """
-    ./uranium
-
-    """
-      Specify the version/branch for graphite-web and carbon.
-    """
-    vim ./conf_default/version.yaml
-
-    """
-      Set up all graphite components in one command line
-    """
-    ./uranium build
-
-Yeah, we are good to use Graphite now.
-
-.. code::
-
-    """
-      activate virtual env
-    """
-    source ./bin/activate
-
-
-    """
-      Start a single carbon-relay
-    """
-    python ./bin/carbon-relay.py --instance=a start
-
-
-    """
-      Start a single carbon-cache
-    """
-    python ./bin/carbon-cache.py --instance=a start
-
-
-    """
-      Start a bunch of carbon-cache and carbon-relay instances once.
-    """
-    # start all daemons
-    ./bin/run
-
-    # shutdown all daemons
-    ./bin/shutdown
-
-
-However, if you are utilizing uranium to exec these tasks (start and shutdown daemons),
-you don't need to activate virtual env explictly. Run these command line directly.
-
-.. code::
-
-    """
-      start all daemons
-    """
-    ./uranium daemons
-
-
-    """
-      shutdown all daemons
-    """
-    ./uranium shutdown
-
-
-    """
-      Start mysql server
-    """
-    mysqld_safe
-
-
-    """
-      Set up webapp backend database. This helps you create user, password
-      and database
-    """
-    ./uranium db
-
-
-    """
-      Create initial schema, migration.
-    """
-    PYTHONPATH=$GRAPHITE_ROOT/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb
-
-
-    """
-      Start webapp under Gunicorn
-    """
-    ./uranium webapp
-
-
-    """
-      Dev Mode: run Graphite under django development server
-    """
-    ./uranium dev
+    docker-compose up --build
 
 Then, go to http://0.0.0.0:8080.
 

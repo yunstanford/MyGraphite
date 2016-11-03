@@ -90,6 +90,20 @@ def webapp(build):
     ])
 
 
+def all(build):
+    _print("=== Start daemons ===")
+    build.executables.run([
+        "{0}/bin/run".format(ROOT)
+    ])
+    _print("=== done ===")
+
+    _print("=== Start Graphite-web ===")
+    build.executables.run([
+        "gunicorn", "graphite_wsgi:application",
+        "-c", "{0}/conf/gunicorn_prod.py".format(ROOT)
+    ])
+
+
 def dev(build):
     build.executables.run([
         "python", "{0}/bin/run-graphite-devel-server.py".format(ROOT), ROOT
