@@ -9,6 +9,9 @@ and installing all python dependencies for you by utilizing uranium, an assembly
 With MyGraphite, you can easily set up Graphite on your local machine.
 
 
+MyGraphite also provide Docker option. Checkout Docker Section in README.
+
+
 -------------------
 OS level dependency
 -------------------
@@ -118,7 +121,8 @@ you don't need to activate virtual env explictly. Run these command line directl
 
     """
       Set up webapp backend database. This helps you create user, password
-      and database
+      and database. Run only once to set up user, password. You can also do
+      it manually.
     """
     ./uranium db
 
@@ -147,6 +151,25 @@ database configuration. You should also create a user and grant all privileges o
 
 For more details, refer
 - https://github.com/yunstanford/GraphiteSetup
+
+
+--------------------
+MyGraphite in Docker
+--------------------
+
+Wanna run graphite in container ? Let's get started.
+
+.. code::
+
+    """
+      Docker
+    """
+    docker-compose up
+
+    """
+      wanna rebuild ?
+    """
+    docker-compose up --build
 
 
 -------------

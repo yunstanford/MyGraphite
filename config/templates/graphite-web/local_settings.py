@@ -1,6 +1,8 @@
 ################################################
 #		  Default Configuration				   #
 ################################################
+import os
+
 
 TIME_ZONE = 'US/Pacific'
 ALLOWED_HOSTS = [ '*' ]
@@ -46,6 +48,11 @@ DATABASES = {
 SECRET_KEY = 'YOUR_SECRET_KEY'
 MAX_FETCH_RETRIES = 2
 
+# Set CONF_DIR
+ROOT_TMP = os.path.dirname(os.path.realpath(__file__))
+ROOT_TMP = os.path.dirname(ROOT_TMP)
+ROOT_TMP = os.path.dirname(ROOT_TMP)
+CONF_DIR = os.path.join(ROOT_TMP, "config", "current", "graphite-web")
 
 # Set URL_PREFIX when deploying graphite-web to a non-root location
 # URL_PREFIX = '/graphite'
