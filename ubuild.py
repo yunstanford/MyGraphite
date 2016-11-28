@@ -70,7 +70,7 @@ def db(build):
 def daemons(build):
     _print("=== Start daemons ===")
     # Set up envs
-    build.envvars["GRAPHITE_CONF_DIR"] = "{0}/config/current/carbon"
+    build.envvars["GRAPHITE_CONF_DIR"] = "{0}/config/current/carbon".format(ROOT)
     build.executables.run([
         "{0}/bin/run".format(ROOT)
     ])

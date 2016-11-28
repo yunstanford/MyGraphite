@@ -1,6 +1,8 @@
 ################################################
 #		  Default Configuration				   #
 ################################################
+import os
+
 
 TIME_ZONE = 'US/Pacific'
 ALLOWED_HOSTS = [ '*' ]
