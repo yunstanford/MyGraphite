@@ -32,7 +32,7 @@ def main(build):
 @task_requires("main")
 def build(build):
     _install_dependencies(build)
-    _template_rendering()
+    _template_rendering(build)
     VERSION_CONFIG = _load_version()
     GITHUB_ACCOUNT = VERSION_CONFIG["github_account"]
     BRANCH = VERSION_CONFIG["branch"]
@@ -136,7 +136,7 @@ def _install_dependencies(build):
     build.packages.install("gevent", version="==1.1.2")
 
 
-def _template_rendering():
+def _template_rendering(build):
     _print("Template Rendering...")
     build.executables.run([
         "cp", "-R", "{0}/config/templates".format(ROOT),
