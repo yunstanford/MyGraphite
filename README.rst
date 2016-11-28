@@ -118,7 +118,8 @@ you don't need to activate virtual env explictly. Run these command line directl
 
     """
       Set up webapp backend database. This helps you create user, password
-      and database
+      and database. Run only once to set up user, password. You can also do
+      it manually.
     """
     ./uranium db
 
