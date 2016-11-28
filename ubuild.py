@@ -100,6 +100,23 @@ def dev(build):
     ])
 
 
+def all(build):
+    _print("=== Start daemons ===")
+    # Set up envs
+    build.envvars["GRAPHITE_CONF_DIR"] = "{0}/config/current/carbon".format(ROOT)
+    build.executables.run([
+        "{0}/bin/run".format(ROOT)
+    ])
+    _print("=== done ===")
+
+    _print("=== Start Graphite-web with Gunicorn ===")
+    build.executables.run([
+        "gunicorn", "graphite_wsgi:application",
+        "-c", "{0}/config/current/gunicorn_prod.py".format(ROOT)
+    ])
+    _print("=== done ===")
+
+
 def distribute(build):
     """ distribute the uranium package """
     build.packages.install("wheel")
