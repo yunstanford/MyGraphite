@@ -128,6 +128,8 @@ def _install_dependencies(build):
     build.packages.install("MySQL-python")
     build.packages.install("cairocffi")
     build.packages.install("whitenoise")
+    build.packages.install("greenlet", version="==0.4.10")
+    build.packages.install("gevent", version="==1.1.2")
 
 
 def _config(build):
