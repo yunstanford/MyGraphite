@@ -1,0 +1,25 @@
+version: '2'
+services:
+  db:
+    image: mysql
+    ports:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: graphite_backend
+      MYSQL_USER: my_graphite
+      MYSQL_PASSWORD: hello_world
+    command: mysqld
+  migration:
+    build: .
+    image: mygraphite 
+    depends_on:
+      - db
+  graphite:
+    image: mygraphite
+    command: ./uranium all
+    ports:
+      - "8080:8080"
+      - "2003:2003"
+    depends_on:
+      - migration
