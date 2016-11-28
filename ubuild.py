@@ -68,6 +68,8 @@ def db(build):
 
 def daemons(build):
     _print("=== Start daemons ===")
+    # Set up envs
+    build.envvars["GRAPHITE_CONF_DIR"] = "{0}/config/current/carbon"
     build.executables.run([
         "{0}/bin/run".format(ROOT)
     ])
@@ -83,14 +85,15 @@ def shutdown(build):
 
 
 def webapp(build):
-    _print("=== Start Graphite-web ===")
+    _print("=== Start Graphite-web with Gunicorn ===")
     build.executables.run([
         "gunicorn", "graphite_wsgi:application",
-        "-c", "{0}/conf/gunicorn_prod.py".format(ROOT)
+        "-c", "{0}/config/current/gunicorn_prod.py".format(ROOT)
     ])
 
 
 def dev(build):
+    _print("=== Start Graphite-web With Django Dev Server ===")
     build.executables.run([
         "python", "{0}/bin/run-graphite-devel-server.py".format(ROOT), ROOT
     ])
@@ -134,31 +137,36 @@ def _install_dependencies(build):
 
 def _config(build):
     _print("=== Configuring... ===")
-    _print("Configuring Carbon...")
-    for file in CONFIG_FILES:    
-        build.executables.run([
-            "cp", "-R", "{0}/conf_default/{1}".format(ROOT, file),
-            "{0}/conf/".format(ROOT)
-        ])
+
+    _print("Template Rendering...")
+    build.executables.run([
+        "cp", "-R", "{0}/config/templates".format(ROOT),
+        "{0}/config/current".format(ROOT)
+    ])
     _print("Successfully done!")
+
+    _print("Configuring Carbon...")
+    # Do Nothing for now
+    _print("Successfully done!")
+
     _print("Configuring Webapp...")
     build.executables.run([
-        "cp", "{0}/conf_default/local_settings.py".format(ROOT),
+        "cp", "{0}/config/current/graphite-web/local_settings.py".format(ROOT),
         "{0}/webapp/graphite/".format(ROOT)
     ])
     _print("Successfully done!")
+
     _print("Configuring general graphite settings...")
     build.executables.run([
-        "cp", "{0}/conf_default/graphite.wsgi".format(ROOT),
+        "cp", "{0}/config/current/graphite-web/graphite.wsgi".format(ROOT),
         "{0}/graphite_wsgi.py".format(ROOT)
     ])
     _print("Successfully done!")
+
     _print("Configuring gunicorn...")
-    build.executables.run([
-        "cp", "{0}/conf_default/gunicorn_prod.py".format(ROOT),
-        "{0}/conf/".format(ROOT)
-    ])
+    # Do Nothing for now
     _print("Successfully done!")
+
     _print("=== Done! ===")
 
 
