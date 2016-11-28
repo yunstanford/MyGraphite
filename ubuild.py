@@ -32,6 +32,7 @@ def main(build):
 @task_requires("main")
 def build(build):
     _install_dependencies(build)
+    _template_rendering()
     VERSION_CONFIG = _load_version()
     GITHUB_ACCOUNT = VERSION_CONFIG["github_account"]
     BRANCH = VERSION_CONFIG["branch"]
@@ -135,15 +136,17 @@ def _install_dependencies(build):
     build.packages.install("gevent", version="==1.1.2")
 
 
-def _config(build):
-    _print("=== Configuring... ===")
-
+def _template_rendering():
     _print("Template Rendering...")
     build.executables.run([
         "cp", "-R", "{0}/config/templates".format(ROOT),
         "{0}/config/current".format(ROOT)
     ])
     _print("Successfully done!")
+
+
+def _config(build):
+    _print("=== Configuring... ===")
 
     _print("Configuring Carbon...")
     # Do Nothing for now
@@ -224,5 +227,5 @@ def _print(msg):
 
 def _load_version():
     import yaml
-    version_path = os.path.join(ROOT, "conf_default", "version.yaml")
+    version_path = os.path.join(ROOT, "config/current", "version.yaml")
     return yaml.load(file(version_path))
