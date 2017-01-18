@@ -79,6 +79,8 @@ def daemons(build):
 
 def shutdown(build):
     _print("=== Shutdown daemons ===")
+    # Set up envs
+    build.envvars["GRAPHITE_CONF_DIR"] = "{0}/config/current/carbon".format(ROOT)
     build.executables.run([
         "{0}/bin/shutdown".format(ROOT)
     ])
